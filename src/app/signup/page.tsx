@@ -1,18 +1,42 @@
 'use client'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { toast } from 'react-hot-toast'
 import axios from 'axios'
 
 export default function SignupPage() {
-    const [user, setUser] = React.useState({
+    const router = useRouter();
+
+    const [buttonDisabled, setButtonDisabled] = useState(false);
+
+    useEffect(() => {
+        if (user.username.length > 0 && user.email.length > 0 && user.password.length > 0) {
+            setButtonDisabled(false);
+        } else {
+            setButtonDisabled(true);
+        }
+    })
+
+    const [user, setUser] = useState({
         username: '',
         email: '',
         password: ''
     });
 
     const onSignUp = async () => {
-        // Your sign-up logic here
+        try {
+            const res = await axios.post("api/users/signup", user);
+            console.log("Signup Success", res);
+            alert("User created successfully");
+            toast.success("Signup Success");
+            router.push("/login");
+        }
+        catch (error:any) { 
+            alert(error.response.data.error || "Signup failed");
+            console.error("Signup Failed:", error);
+            toast.error("Something went wrong, please try again later.");
+        }
     }
 
     return (
@@ -24,7 +48,6 @@ export default function SignupPage() {
                     className="flex flex-col gap-6"
                     onSubmit={(e) => {
                         e.preventDefault();
-                        onSignUp();
                     }}
                 >
                     {/* Username */}
@@ -69,9 +92,12 @@ export default function SignupPage() {
                     {/* Submit Button */}
                     <button
                         type="submit"
-                        className="bg-green-600 hover:bg-green-700 transition-colors duration-300 text-white font-semibold py-3 rounded-md shadow-md cursor-pointer"
+                        onClick={onSignUp}
+                        className={`font-semibold py-3 rounded-md shadow-md transition-colors duration-300
+                            ${buttonDisabled ? "bg-gray-400 cursor-not-allowed" : "bg-green-600 hover:bg-green-700 cursor-pointer text-white"}
+                          `}
                     >
-                        Sign Up
+                        {buttonDisabled ? "No SignUp" : "SignUp"}
                     </button>
 
                     {/* Link to Login */}

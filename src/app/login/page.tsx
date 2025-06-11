@@ -1,17 +1,41 @@
 'use client'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { toast } from 'react-hot-toast'
 import axios from 'axios'
 
 export default function LoginPage() {
+  const router = useRouter();
   const [user, setUser] = React.useState({
     email: '',
     password: ''
   });
 
+  const [buttonDisabled, setButtonDisabled] = React.useState(true);
+
+  useEffect(() => {
+    if (user.email.length > 0 && user.password.length > 0) {
+      setButtonDisabled(false);
+    }
+    else {
+      setButtonDisabled(true);
+    }
+  }, [user]);
+
   const onLogin = async () => {
-    // Your login logic here
+    try {
+      const response = await axios.post("/api/users/login", user);
+      console.log("Login Success", response);
+      alert("User Logged in Successfully");
+      toast.success("Login Success");
+      router.push(`/profile/${response.data.userId}`);
+    }
+    catch (error: any) {
+      alert("Invalid Credentials.");
+      console.error("Login Failed:", error);
+      toast.error("Invalid Credentials, please try again.");
+    }
   }
 
   return (
@@ -23,7 +47,6 @@ export default function LoginPage() {
           className="flex flex-col gap-6"
           onSubmit={(e) => {
             e.preventDefault();
-            onLogin();
           }}
         >
           {/* Email */}
@@ -55,9 +78,12 @@ export default function LoginPage() {
           {/* Submit Button */}
           <button
             type="submit"
-            className="bg-green-600 hover:bg-green-700 transition-colors duration-300 text-white font-semibold py-3 rounded-md shadow-md cursor-pointer"
+            onClick={onLogin}
+            className={`font-semibold py-3 rounded-md shadow-md transition-colors duration-300
+                            ${buttonDisabled ? "bg-gray-400 cursor-not-allowed" : "bg-green-600 hover:bg-green-700 cursor-pointer text-white"}
+                      `}
           >
-            Login
+            {buttonDisabled ? "No Login" : "Login"}
           </button>
 
           {/* Link to Sign Up*/}
