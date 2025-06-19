@@ -29,7 +29,7 @@ export default function LoginPage() {
       console.log("Login Success", response);
       alert("User Logged in Successfully");
       toast.success("Login Success");
-      router.push(`/profile/${response.data.userId}`);
+      router.push("/profile");
     }
     catch (error: any) {
       alert("Invalid Credentials.");
