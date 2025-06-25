@@ -24,3 +24,11 @@ middleware: For Protecting Pages, to handle authentication, authorization.
 2) if try to visit private route without token, it will redirect to login page.
 
 Getting data from token and Display it on profile.
+
+MailTrap Provider with Nodemailer to send the verification like for verifying user
+
+env format:
+MONGO_URL= 
+TOKEN_SECRET= 
+domain=https://localhost:3000
+MailTrapToken=
