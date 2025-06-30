@@ -16,8 +16,8 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ message: "Invalid or expired token" }, { status: 400 });
         }
         user.isVerified = true;
-        user.verifyToken = undefined;
-        user.verifyTokenExpiry = undefined;
+        // user.verifyToken = undefined;
+        // user.verifyTokenExpiry = undefined;
         await user.save();
 
         return NextResponse.json({ message: "Email verified successfully" }, { status: 200 });
