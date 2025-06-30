@@ -11,7 +11,7 @@ type UserData = {
   _id: string;
   username: string;
   email: string;
-  isVarified?: boolean;
+  isVerified?: boolean;
   isAdmin?: boolean;
 };
 
@@ -65,7 +65,7 @@ export default function UserProfile({ params }: any) {
             <u>User ID:</u>     {data._id}<br />
             <u>Username:</u> {data.username}<br />
             <u>Email:</u> {data.email}<br />
-            <u>isVarified:</u> {`${data.isVarified}`}<br />
+            <u>isVerified:</u> {`${data.isVerified}`}<br />
             <u>isAdmin:</u> {`${data.isAdmin}`}<br />
           </h2>
         ) : (

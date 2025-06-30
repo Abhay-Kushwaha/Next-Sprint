@@ -13,11 +13,12 @@ export const sendEamil = async ({ email, emailType, userId }: any) => {
             await User.findByIdAndUpdate(userId, { forgotPasswordToken: hashToken, forgotPasswordTokenExpiry: Date.now() + 3600000 });
         }
 
+        // Looking to send emails in production? Check out our Email API/SMTP product!
         var transport = nodemailer.createTransport({
-            host: "live.smtp.mailtrap.io",
-            port: 587,
+            host: "sandbox.smtp.mailtrap.io",
+            port: 2525,
             auth: {
-                user: "api",
+                user: process.env.MailTrapUser,
                 pass: process.env.MailTrapToken
             }
         });
@@ -29,8 +30,11 @@ export const sendEamil = async ({ email, emailType, userId }: any) => {
             html: `
                 <h1>${emailType === "VERIFY" ? "Verify Your Email" : "Reset Your Password"}</h1>
                 <p>${emailType === "VERIFY" ? "Please click the link below to verify your email address:" : "Please click the link below to reset your password:"}</p>
+                
                 <a href="${process.env.domain}/verifyemail?token=${hashToken}">Click here</a> to ${emailType === "VERIFY" ? "verify" : "reset"} or copy paste the link in your browser: <br>
-                <a href="${process.env.domain}/verifyemail?token=${hashToken}">${process.env.domain}/verifyemail?token=${hashToken}</a>
+
+                <p>"${process.env.domain}/verifyemail?token=${hashToken}</p>
+                
                 <p>This link will expire in 1 hour.</p> `
         }
 
