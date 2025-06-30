@@ -6,6 +6,7 @@ I will be walking through a simple Next Js project to practice my skills.
 -bcryptjs: to hash passwords/tokens.
 -jsonwebtoken: to generate tokens, secure cookies from server side.
 -nodemailer: to send emails.
+-mailtrap: to test emails.
 -mongoose: to interact with MongoDB, wrapper around MongoDB driver.
 -react-hot-toast: to display toast messages.
 
@@ -31,4 +32,8 @@ env format:
 MONGO_URL= 
 TOKEN_SECRET= 
 domain=https://localhost:3000
+MailTrapUser=
 MailTrapToken=
+
+
+Notes on Next.JS:
