@@ -1,15 +1,16 @@
 # Next Js Practice
-
 I will be walking through a simple Next Js project to practice my skills.
 
--axios: to make API calls.
--bcryptjs: to hash passwords/tokens.
--jsonwebtoken: to generate tokens, secure cookies from server side.
--nodemailer: to send emails.
--mailtrap: to test emails.
--mongoose: to interact with MongoDB, wrapper around MongoDB driver.
--react-hot-toast: to display toast messages.
+- axios: to make API calls.
+- bcryptjs: to hash passwords/tokens.
+- jsonwebtoken: to generate tokens, secure cookies from server side.
+- nodemailer: to send emails.
+- mailtrap: to test emails.
+- mongoose: to interact with MongoDB, wrapper around MongoDB driver.
+- react-hot-toast: to display toast messages.
 
+
+## Steps
 Database Confuguartion and Connection
 
 SignUp: generate token, save user to database, redirect to login page.
@@ -28,12 +29,21 @@ Getting data from token and Display it on profile.
 
 MailTrap Provider with Nodemailer to send the verification like for verifying user
 
-env format:
+
+## env format:
+```
 MONGO_URL= 
 TOKEN_SECRET= 
 domain=https://localhost:3000
 MailTrapUser=
 MailTrapToken=
+```
 
-
-Notes on Next.JS:
+## Notes on Next.JS:
+- [ ] for dynamic routing, getting params and slug (destructure and await)
+- [...path] for catching nested dynamic route, destructure params and await and destructure filepath {filepath.join("/)}
+- [[...path]] for Optiional catch all route nested dynamic route, destructure params and await and destructure filepath {filepath?.join("/)}........CAN NOT use at root (/)
+- ( ) for Folder but no routing, used for Route Grouping 
+- set title in metadata, %s to catch the string and cana also set default value, set absolute for overwriting the title
+- notfound() function to block perticular page, not-found.js for custom page
+- RE for getting only number "/^\d+$/"
