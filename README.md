@@ -47,3 +47,9 @@ MailTrapToken=
 - set title in metadata, %s to catch the string and cana also set default value, set absolute for overwriting the title
 - notfound() function to block perticular page, not-found.js for custom page
 - RE for getting only number "/^\d+$/"
+- use "_foldername" for creating Private folder, can also use %5F for _ symbol
+- generateStaticParams(){ return [{},{},{}]} to generate static pages at build time, used for SSG(Server Side Generation) for frequent visiting pages
+- ISR (Increamental Site Regeneration)
+- !important for overriding CSS
+- .module.css and import {styles} from "../" for using styles in CSS Module
+- npm i --save-dev sass for SCSS 
