@@ -40,16 +40,19 @@ MailTrapToken=
 ```
 
 ## Notes on Next.JS:
-- [ ] for dynamic routing, getting params and slug (destructure and await)
-- [...path] for catching nested dynamic route, destructure params and await and destructure filepath {filepath.join("/)}
-- [[...path]] for Optiional catch all route nested dynamic route, destructure params and await and destructure filepath {filepath?.join("/)}........CAN NOT use at root (/)
-- ( ) for Folder but no routing, used for Route Grouping 
-- set title in metadata, %s to catch the string and cana also set default value, set absolute for overwriting the title
-- notfound() function to block perticular page, not-found.js for custom page
-- RE for getting only number "/^\d+$/"
-- use "_foldername" for creating Private folder, can also use %5F for _ symbol
-- generateStaticParams(){ return [{},{},{}]} to generate static pages at build time, used for SSG(Server Side Generation) for frequent visiting pages
+- **[foldername]** for dynamic routing, getting params and slug (destructure and await)
+- **[...path]** for catching nested dynamic route, destructure params and await and destructure filepath {filepath.join("/)}
+- **[[...path]]** for Optiional catch all route nested dynamic route, destructure params and await and destructure filepath **{filepath?.join("/)}**........CAN NOT use at root (/)
+- **( )** for Folder but no routing, used for Route Grouping 
+- set title in metadata, **%s** to catch the string and cana also set default value, set absolute for overwriting the title
+- **notfound()** function to block perticular page, not-found.js for custom page
+- RE for getting only number **"/^\d+$/"**
+- use **"_foldername"** for creating Private folder, can also use %5F for _ symbol
+- **generateStaticParams(){ return [{},{},{}]}** to generate static pages at build time, used for SSG(Server Side Generation) for frequent visiting pages
 - ISR (Increamental Site Regeneration)
-- !important for overriding CSS
-- .module.css and import {styles} from "../" for using styles in CSS Module
-- npm i --save-dev sass for SCSS 
+- **!important** for overriding CSS
+- **.module.css** and **import {styles} from "../path"** for using styles in CSS Module
+- **npm i --save-dev** sass for SCSS 
+- **export const revalidate=false** (or some number in seconds) for regeneration of static page at build
+- **export const dynamic="force-dynamic"** for dynamic generation of static page **OR** async and destructure searchParams and await it to make it dynamic **OR** use cokkies() fuction provided by next to make it dynamic
+- **<Suspense fallback="Loading..."**> tag for timout loading.
